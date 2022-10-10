@@ -32,6 +32,20 @@ app.use(router({
 
 app.listen(3000);
 ```
+or using imports
+```js
+import express from 'express';
+import router from 'express-router-filesystem';
+
+const app = express();
+
+app.use(router({
+  routesDir: __dirname + '/routes',
+  routePrefix: '/api'
+}));
+
+app.listen(3000);
+```
 
 ### The route files
 
@@ -45,7 +59,7 @@ module.exports = {
   };
 };
 ```
-or
+or using exports
 ```js
 // routes/users/get.js
 export const get = (req, res) => {
@@ -65,7 +79,7 @@ module.exports = {
   };
 };
 ```
-or
+or using exports
 ```js
 // routes/users/[id].js
 export const get = (req, res) => {
