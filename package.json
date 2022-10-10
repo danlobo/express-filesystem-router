@@ -9,6 +9,13 @@
     "build": "tsc"
   },
   "author": "Daniel Lobo",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/danlobo/express-router-filesystem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danlobo/express-router-filesystem/issues"
+  },
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
