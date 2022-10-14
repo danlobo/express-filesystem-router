@@ -87,6 +87,55 @@ export const get = (req, res) => {
 };
 ```
 
+## Middlewares
+
+You can define middlewares for a route by creating a file with the name `_middleware.js`. The file should export a default function that takes the express router as an argument. The function should return the router.
+
+```js
+// routes/users/_middleware.js
+module.exports = router => {
+  router.use((req, res, next) => {
+    console.log('middleware');
+    next();
+  });
+  return router;
+};
+```
+or using exports
+```js
+// routes/users/_middleware.js
+export default router => {
+  router.use((req, res, next) => {
+    console.log('middleware');
+    next();
+  });
+  return router;
+};
+```
+
+Any middleware defined in the `_middleware.js` file will be applied to all routes in the directory and its subdirectories. For example, if you have a route structure like this:
+
+- routes
+  - _middleware.js (1)
+  - users
+    - _middleware.js (2)
+    - [id].js
+    - index.js
+    - posts
+      - _middleware.js (3)
+      - [id].js
+      - index.js
+
+Calling /users/1 will call the middlewares numbers 1 and 2. Calling /users/posts/1 will call the middlewares numbers 1, 2 and 3.
+
+You can also define multiple middlewares for a route by naming the file as `_middleware.<name>.js`. The name can be alphanumeric characters, `-` and `_`. Middlewares will be called in alphabetical order.
+
+Examples:
+
+- `_middleware.1-login.js`
+- `_middleware.session.js`
+- `_middleware.2_authorization_token.js`
+
 ## Options
 
 ### routesDir
