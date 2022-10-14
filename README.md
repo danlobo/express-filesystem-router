@@ -93,23 +93,17 @@ You can define middlewares for a route by creating a file with the name `_middle
 
 ```js
 // routes/users/_middleware.js
-module.exports = router => {
-  router.use((req, res, next) => {
-    console.log('middleware');
-    next();
-  });
-  return router;
+module.exports = (req, res, next) => {
+  console.log('middleware');
+  next();
 };
 ```
 or using exports
 ```js
 // routes/users/_middleware.js
-export default router => {
-  router.use((req, res, next) => {
-    console.log('middleware');
-    next();
-  });
-  return router;
+export default (req, res, next) => {
+  console.log('middleware');
+  next();
 };
 ```
 
