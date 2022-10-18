@@ -21,30 +21,32 @@ $ yarn add express-router-filesystem
 
 ```js
 const express = require('express');
-const router = require('express-router-filesystem');
+const FsRouter = require('express-router-filesystem').FsRouter;
 
 const app = express();
 
-app.use(router({
+FsRouter(app, {
   routesDir: __dirname + '/routes',
   routePrefix: '/api'
-}));
-
-app.listen(3000);
+})
+.then(() => {
+  app.listen(3000);
+});
 ```
 or using imports
 ```js
 import express from 'express';
-import router from 'express-router-filesystem';
+import { FsRouter } from 'express-router-filesystem';
 
 const app = express();
 
-app.use(router({
+FsRouter(app, {
   routesDir: __dirname + '/routes',
   routePrefix: '/api'
-}));
-
-app.listen(3000);
+})
+.then(() => {
+  app.listen(3000);
+});
 ```
 
 ### The route files
